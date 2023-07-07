@@ -2,8 +2,13 @@ import { createApp, onMounted, ref, defineComponent } from 'vue' //必须有
 import { render as renderAmis, render as renderSchema } from 'amis'
 import { applyReactInVue, applyPureReactInVue } from 'veaury'
 import ReactDOM from 'react-dom'
+import uecharts from '@/components/uecharts.vue'
+
 console.log(ReactDOM)
 export default defineComponent({
+  components: {
+    uecharts
+  },
   setup(props, ctx) {
     const renderBox = ref('renderBox')
     console.log(renderBox)
@@ -79,6 +84,7 @@ export default defineComponent({
     return (
       <div>
         <a href="/editor">editor</a>
+        <uecharts />
         <div class="jqp-amis-editor-header" ref="renderBox"></div>
       </div>
     )

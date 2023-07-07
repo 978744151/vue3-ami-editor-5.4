@@ -1,5 +1,7 @@
 <template>
   <div class="jqp-amis-editor">
+    <AmisUe />
+    <div class="jqp-amis-editor-header" ref="render"></div>
     <div class="jqp-amis-editor-header" ref="renderBox"></div>
     <AmisEditor
       :className="className"
@@ -12,14 +14,10 @@
       :isMobile="isMobile"
       @onChange="hanldeChange"
     />
+    <Shortcut />
   </div>
-  <Shortcut />
 </template>
 <script setup>
-import { createApp, onMounted, ref } from 'vue' //必须有
-import { render as renderAmis, render as renderSchema } from 'amis'
-import { applyReactInVue, applyPureReactInVue } from 'veaury'
-import ReactDOM from 'react-dom'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all'
 import 'amis/lib/themes/default.css'
@@ -27,29 +25,43 @@ import 'amis/lib/helper.css'
 import 'amis/sdk/iconfont.css'
 import 'amis-editor-core/lib/style.css'
 import 'amis-ui/lib/themes/antd.css'
+import ReactDOM from 'react-dom'
+import { createApp, onMounted, ref, h, nextTick } from 'vue' //必须有
+import { render as renderAmis, render as renderSchema } from 'amis'
+import { applyReactInVue, applyPureReactInVue } from 'veaury'
 import { Editor, ShortcutKey } from 'amis-editor'
+import VueUniArea from '@/components/uecharts.vue'
+import uecharts from '@/components/uecharts.tsx'
+console.log(uecharts)
+import { createVue3Component } from 'vue3-amis-widget'
+
+// const UniArea = createVue3Component(uecharts)
 const AmisEditor = applyPureReactInVue(Editor)
+const AmisUe = applyPureReactInVue(uecharts)
 const Shortcut = applyPureReactInVue(ShortcutKey)
+console.log(AmisUe)
+
 const className = 'jqp-amis-editor-body'
 const renderBox = ref('renderBox')
+const render = ref('render')
+console.log(render)
 const isPreview = ref(false)
 const isMobile = ref(false)
 const schema = ref({})
 const headerSchema = ref({})
+
 const onChange = () => {}
 const hanldePreview = (e) => {
-  console.log(e)
   isPreview.value = e
 }
 const hanldeChange = (e) => {
-  console.log(e)
   schema.value = e
 }
 const setMobile = (e) => {
   isMobile.value = e
 }
-console.log(renderAmis)
-onMounted(() => {
+
+onMounted(async () => {
   headerSchema.value = {
     type: 'form',
     mode: 'inline',
@@ -101,6 +113,10 @@ onMounted(() => {
     confirm: (msg) => amisAlert(msg, '系统提示')
     // 其他配置实现...
   }
+  await nextTick()
+  // setTimeout(() => {
+  //   ReactDOM.render(UniArea, render.value)
+  // }, 2000)
   ReactDOM.render(
     renderSchema(
       headerSchema.value,
