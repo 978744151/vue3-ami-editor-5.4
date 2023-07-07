@@ -2,7 +2,7 @@
 
 ```依赖于 veaury vue3 vite npm i 不要动package不然可能会报错 node >16
 
-## Project Setup
+
 
 ```sh
 npm install （必须 yarn会导致ami-editor出问题）
