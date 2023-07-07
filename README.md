@@ -24,7 +24,7 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ## Project Setup
 
 ```sh
-npm install
+npm install （必须 yarn会导致ami-editor出问题）
 ```
 
 ### Compile and Hot-Reload for Development
