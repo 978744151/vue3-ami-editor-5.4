@@ -1,5 +1,5 @@
 # vue-ami-editor-5.4
-
+node > 16
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

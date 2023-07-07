@@ -8,7 +8,7 @@ import veauryVitePlugins from 'veaury/vite/index.js'
 export default defineConfig({
   plugins: [
     // vue(),
-    // vueJsx(),
+    vueJsx(),
     veauryVitePlugins({
       type: 'vue'
     })
