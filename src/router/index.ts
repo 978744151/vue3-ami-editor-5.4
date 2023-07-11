@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { Component } from 'vue'
 import utils from '@/utils'
+import editor from '@/views/editor.vue'
 const modules = import.meta.glob('/src/views/**/**.tsx')
 const components: { [key: string]: Component } = utils.mapping(modules)
 const router = createRouter({
@@ -8,15 +10,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      meta:{
+        // keepAlive:true,
+      },
       component: components['home']
     },
     {
       path: '/editor',
       name: 'editor',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/editor.vue')
+      meta:{
+        // keepAlive:true,
+      },
+      component:  editor
     }
   ]
 })

@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import veauryVitePlugins from 'veaury/vite/index.js'
+// import checker from 'vite-plugin-checker';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -11,7 +12,10 @@ export default defineConfig({
     vueJsx(),
     veauryVitePlugins({
       type: 'vue'
-    })
+    }),
+    // checker({
+    //   vueTsc: true,
+    // }),
   ],
   resolve: {
     alias: {

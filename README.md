@@ -1,5 +1,8 @@
 # vue-ami-editor-5.4
+本项目由于引进框架和模版太多，不进行ts校验，ts书写方式自己定
+react 版本必须 <16,editor不支持react18
 node > 16
+插件在main里自己引入plugin即可
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
